@@ -1,6 +1,10 @@
 <div class="row form">
   <div class="col-lg-12">
     <%= form_for current_user do |f| %>
+      <h2>プロフィール画像</h2>
+      <div class="form-group file">
+        <%= f.file_field :avatar, class: "form-control floating-label", placeholder: "画像アップロード" %>
+      </div>
       <h2>登録情報</h2>
       <div class="form-group">
         <div class="col-lg-6">
