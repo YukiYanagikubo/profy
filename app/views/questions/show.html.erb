@@ -1,0 +1,18 @@
+<div class="row form">
+  <div class="col-lg-12">
+    <h3><span>Q</span><%= @question.text %></h3>
+    <div class="group_action panel panel-default">
+      <div class="panel-body">
+        <% unless @question.answers.exists?(user_id: current_user.id) %>
+          <%= link_to '質問に回答する', new_answer_path(question_id: @question.id) %>
+        <% else %>
+          <h4>※回答済み※</h4>
+        <% end %>
+      </div>
+    </div>
+    <% if @question.answers.present? %>
+      <h3><span>A</span>この質問への回答</h3>
+      <%= render partial: "questions/answer", collection: @answers %>
+    <% end %>
+  </div>
+</div>

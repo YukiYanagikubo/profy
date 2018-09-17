@@ -1,0 +1,28 @@
+<div class="question_content top_content">
+  <header class="question_header">
+    <div class="question_image icon_image" style="background-image: url(<%= question.user.avatar.url(:medium) %>);"></div>
+    <div class="question_user_info user_info">
+      <span><%= link_to question.user.name, user_path(question.user) %></span>
+      <time><%= time_ago_in_words question.created_at %></time>
+    </div>
+  </header>
+  <div class="question_body">
+    <div class="question_box">
+      <span class="q">Q</span>
+      <span class="question_text"><%= question.text %></span>
+    </div>
+    <div class="questioned">
+      <%= link_to "回答#{question.answers.count}件", question_path(question) %>
+    </div>
+    <% unless question.answers.exists?(user_id: current_user.id) %>
+      <%= form_tag(new_answer_path, method: :get, class: 'question_submit') do %>
+        <%= hidden_field_tag(:question_id, question.id) %>
+        <%= submit_tag('回答する') %>
+      <% end %>
+    <% else %>
+      <div class='answer_other'>
+        <h4>※回答済み※</h4>
+      </div>
+    <% end %>
+  </div>
+</div>

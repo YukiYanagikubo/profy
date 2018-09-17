@@ -7,5 +7,11 @@
         <%= link_to "プロフィール編集", edit_user_path(current_user), {:class => "btn btn-primary withripple" }%>
       </div>
     <% end %>
+    <% if @questions.present? %>
+      <h3>このユーザーの回答した質問</h3>
+      <div class='clearfix'>
+        <%= render partial: 'users/question', collection: @questions %>
+      </div>
+    <% end %>
   </div>
 </div>
