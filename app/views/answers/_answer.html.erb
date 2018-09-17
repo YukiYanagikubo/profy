@@ -1,0 +1,28 @@
+<div class="answer_content top_content">
+  <header class="answer_header">
+    <div class="answer_image icon_image" style="background-image: url(<%= answer.user.avatar.url(:medium) %>);"></div>
+    <div class="answer_user_info user_info">
+      <span><%= link_to answer.user.name, user_path(answer.user) %></span>
+      <time><%= time_ago_in_words answer.updated_at %></time>
+    </div>
+  </header>
+  <div class="answer_body">
+    <div class="answerd">
+      <%= answer.question.user.name %>の質問「<%= link_to answer.question.text, question_path(answer.question) %>」に回答しました。
+    </div>
+    <div class="answer_box">
+      <span class="a">A</span>
+      <span class="answer_text"><%= answer.text %></span>
+      <% if answer.user_id == current_user.id %>
+        <small class="edit">
+          <%= link_to '編集', edit_answer_path(answer) %>
+        </small>
+      <% end %>
+    </div>
+    <% if answer.question.answers.count > 1 %>
+      <div class="answer_other">
+        <%= link_to "他#{answer.question.answers.count - 1}件の回答を見る", question_path(answer.question) %>
+      </div>
+    <% end %>
+  </div>
+</div>
