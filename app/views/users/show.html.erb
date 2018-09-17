@@ -1,3 +1,5 @@
+<% provide :title, " | #{@user.name}さん" %>
+
 <div class="row form user_profile">
   <div class="col-lg-12">
     <div class="image" style="background-image: url(<%= @user.avatar.url(:medium) %>);"></div>
