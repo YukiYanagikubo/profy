@@ -12,7 +12,11 @@
     </div>
     <% if @question.answers.present? %>
       <h3><span>A</span>この質問への回答</h3>
-      <%= render partial: "questions/answer", collection: @answers %>
+      <% if @question.answered?(current_user) %>
+        <%= render partial: "questions/answer", collection: @answers %>
+      <% else %>
+        <h1>※質問に答えると他の人の回答を見ることが出来ます</h1>
+      <% end %>
     <% end %>
   </div>
 </div>
