@@ -1,0 +1,17 @@
+<div class="question_content top_content">
+  <div class="question_body">
+    <div class="question_box">
+      <span class="q">Q</span>
+      <span class="question_text"><%= question.text %></span>
+    </div>
+    <div class="answer_box" style="margin-bottom: 10px;">
+      <span class="a">A</span>
+      <span class="answer_text"><%= question.user_answer(@user.id).text %></span>
+      <% if @user.id == current_user.id %>
+        <small class='edit'>
+          <%= link_to '編集', edit_answer_path(question.user_answer(@user.id)) %>
+        </small>
+      <% end %>
+    </div>
+  </div>
+</div>
